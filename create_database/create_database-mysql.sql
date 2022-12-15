@@ -81,7 +81,7 @@ CREATE TABLE reservation (
     num_breakfast int,
     value decimal(10,2),
     reservation_id int PRIMARY KEY,
-    reservetation_date datetime,
+    reservation_date datetime,
     client_cpf varchar(50),
     quanitity_points int
 );
