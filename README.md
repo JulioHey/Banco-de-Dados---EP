@@ -6,3 +6,4 @@
 - [ ] Adicio
 - [ ] Remover buy_value da tabela cash_outflow no modelo lógico e relacional
 - [ ] typo na tabela cash_outflow - coluna quantity no modelo lógico e relacional
+- [ ] mudar tipo da coluna parking_space_TYPE na tabela parking_space para varchar(50) no modelo lógico

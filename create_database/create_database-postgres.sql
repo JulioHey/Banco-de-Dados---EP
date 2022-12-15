@@ -107,7 +107,7 @@ CREATE TABLE parking_space (
     parking_id int PRIMARY KEY,
     width decimal(10,2),
     length decimal(10,2),
-    parking_space_TYPE INT,
+    parking_space_TYPE varchar(50),
     hotel_id int
 );
 
