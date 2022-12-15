@@ -1,8 +1,8 @@
-/* LógicoCorrigido2: */
+/* logico: */
 
 CREATE TABLE client (
     f_name varchar(50),
-    cpf varchar(11) PRIMARY KEY,
+    cpf varchar(50) PRIMARY KEY,
     birth_date datetime,
     l_name varchar(50),
     register_date datetime
@@ -33,7 +33,7 @@ CREATE TABLE benefit (
     benefit_id int PRIMARY KEY,
     value decimal(10,2),
     level varchar(50),
-    benefit_TYPE varchar(50)
+    beneft_TYPE varchar(50)
 );
 
 CREATE TABLE cash_outflow (
@@ -42,7 +42,7 @@ CREATE TABLE cash_outflow (
     emission_date datetime,
     payment_id int PRIMARY KEY,
     value decimal(10,2),
-    quantitity int,
+    quantity int,
     cash_outflow_TYPE varchar(50),
     responsible_cpf varchar(11)
 );
@@ -81,8 +81,9 @@ CREATE TABLE reservation (
     num_breakfast int,
     value decimal(10,2),
     reservation_id int PRIMARY KEY,
-    reservation_date datetime,
-    client_cpf varchar(11)
+    reservetation_date datetime,
+    client_cpf varchar(50),
+    quanitity_points int
 );
 
 CREATE TABLE product (
@@ -108,7 +109,8 @@ CREATE TABLE parking_space (
     width decimal(10,2),
     length decimal(10,2),
     parking_space_TYPE varchar(50),
-    hotel_id int
+    hotel_id int,
+    covered tinyint(1)
 );
 
 CREATE TABLE company (
@@ -126,7 +128,7 @@ CREATE TABLE event (
     event_id int PRIMARY KEY,
     event_TYPE varchar(50),
     fk_company_cnpj varchar(14),
-    fk_client_cpf varchar(11)
+    fk_client_cpf varchar(50)
 );
 
 CREATE TABLE saloon (
@@ -153,10 +155,10 @@ CREATE TABLE kitchen (
 
 CREATE TABLE cash_entry (
     payment_form varchar(50),
-    value DECIMAL(10,2),
     tax decimal(10,2),
     emission_date datetime,
-    payment_id int PRIMARY KEY
+    payment_id int PRIMARY KEY,
+    value decimal(10,2)
 );
 
 CREATE TABLE reservation_product (
@@ -214,7 +216,9 @@ CREATE TABLE cash_entry_reservation (
 
 CREATE TABLE cash_entry_room (
     missing_value decimal(10,2),
-    payment_id int
+    payment_id int,
+    room_id int,
+    PRIMARY KEY (payment_id, room_id)
 );
 
 CREATE TABLE restaurant (
@@ -224,7 +228,7 @@ CREATE TABLE restaurant (
     room_service int,
     location varchar(50),
     fk_hotel_hotel_id int,
-    fk_department_department_id int
+    department_id int
 );
 
 CREATE TABLE department (
@@ -286,6 +290,71 @@ CREATE TABLE employee_saloon (
     saloon_id int,
     employee_cpf varchar(11)
 );
+
+CREATE TABLE cupom (
+    active tinyint(1),
+    description varchar(50),
+    valid_reservation tinyint(1),
+    Id varchar(50) PRIMARY KEY,
+    code varchar(50),
+    value_percentage decimal(2,2),
+    value decimal(10,2),
+    Cupom_TIPO varchar(50),
+    campaign_id int
+);
+
+CREATE TABLE campaigns (
+    campaign_name varchar(50),
+    initial_date datetime,
+    final_date datetime,
+    main_target varchar(50),
+    dept_id int,
+    campaign_id int PRIMARY KEY
+);
+
+CREATE TABLE dish (
+    name varchar(50),
+    description varchar(50),
+    value decimal(10,2),
+    dish_id int PRIMARY KEY,
+    restaurant_id int
+);
+
+CREATE TABLE petshop (
+    petshop_id int PRIMARY KEY,
+    name varchar(50),
+    location varchar(50),
+    open_period varchar(50),
+    hotel_id int,
+    dept_id int
+);
+
+CREATE TABLE petshop_product (
+    min_stock int,
+    stock int,
+    petshop_id int,
+    product_id int
+);
+
+CREATE TABLE petshop_client_payment (
+    pet_name varchar(50),
+    pet_type varchar(50),
+    service_type varchar(50),
+    value decimal(10,2),
+    petshop_id int,
+    cpf varchar(50),
+    payment_id int PRIMARY KEY
+);
+
+CREATE TABLE fidelity_program (
+    cpf varchar(50) PRIMARY KEY,
+    points int,
+    expire_at datetime
+);
+ 
+ALTER TABLE client ADD CONSTRAINT FK_client_2
+    FOREIGN KEY (cpf)
+    REFERENCES fidelity_program (cpf);
  
 ALTER TABLE employee ADD CONSTRAINT FK_employee_2
     FOREIGN KEY (department_id)
@@ -404,13 +473,17 @@ ALTER TABLE cash_entry_room ADD CONSTRAINT FK_cash_entry_room_1
     FOREIGN KEY (payment_id)
     REFERENCES cash_entry (payment_id);
  
+ALTER TABLE cash_entry_room ADD CONSTRAINT FK_cash_entry_room_3
+    FOREIGN KEY (room_id)
+    REFERENCES room (room_id);
+ 
 ALTER TABLE restaurant ADD CONSTRAINT FK_restaurant_2
     FOREIGN KEY (fk_hotel_hotel_id)
     REFERENCES hotel (hotel_id)
     ON DELETE CASCADE;
  
 ALTER TABLE restaurant ADD CONSTRAINT FK_restaurant_3
-    FOREIGN KEY (fk_department_department_id)
+    FOREIGN KEY (department_id)
     REFERENCES department (department_id)
     ON DELETE CASCADE;
  
@@ -518,3 +591,49 @@ ALTER TABLE employee_saloon ADD CONSTRAINT FK_employee_saloon_2
     FOREIGN KEY (employee_cpf)
     REFERENCES employee (cpf)
     ON DELETE SET NULL;
+ 
+ALTER TABLE cupom ADD CONSTRAINT FK_cupom_2
+    FOREIGN KEY (campaign_id)
+    REFERENCES campaigns (campaign_id);
+ 
+ALTER TABLE campaigns ADD CONSTRAINT FK_campaigns_1
+    FOREIGN KEY (dept_id)
+    REFERENCES department (department_id);
+ 
+ALTER TABLE dish ADD CONSTRAINT FK_dish_2
+    FOREIGN KEY (restaurant_id)
+    REFERENCES restaurant (restaurant_id)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE petshop ADD CONSTRAINT FK_petshop_2
+    FOREIGN KEY (hotel_id)
+    REFERENCES hotel (hotel_id)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE petshop ADD CONSTRAINT FK_petshop_3
+    FOREIGN KEY (dept_id)
+    REFERENCES department (department_id);
+ 
+ALTER TABLE petshop_product ADD CONSTRAINT FK_petshop_product_1
+    FOREIGN KEY (petshop_id)
+    REFERENCES petshop (petshop_id);
+ 
+ALTER TABLE petshop_product ADD CONSTRAINT FK_petshop_product_2
+    FOREIGN KEY (product_id)
+    REFERENCES product (product_id);
+ 
+ALTER TABLE petshop_client_payment ADD CONSTRAINT FK_petshop_client_payment_1
+    FOREIGN KEY (petshop_id)
+    REFERENCES petshop (petshop_id);
+ 
+ALTER TABLE petshop_client_payment ADD CONSTRAINT FK_petshop_client_payment_2
+    FOREIGN KEY (payment_id)
+    REFERENCES cash_entry (payment_id);
+ 
+ALTER TABLE petshop_client_payment ADD CONSTRAINT FK_petshop_client_payment_4
+    FOREIGN KEY (cpf)
+    REFERENCES client (cpf);
+ 
+ALTER TABLE fidelity_program ADD CONSTRAINT FK_fidelity_program_2
+    FOREIGN KEY (cpf)
+    REFERENCES client (cpf);
