@@ -352,10 +352,6 @@ CREATE TABLE fidelity_program (
     expire_at datetime
 );
  
-ALTER TABLE client ADD CONSTRAINT FK_client_2
-    FOREIGN KEY (cpf)
-    REFERENCES fidelity_program (cpf);
- 
 ALTER TABLE employee ADD CONSTRAINT FK_employee_2
     FOREIGN KEY (department_id)
     REFERENCES department (department_id)
