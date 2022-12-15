@@ -1,4 +1,4 @@
-INSERT INTO beneft (benefit_id,value,`level`,beneft_TYPE) VALUES
+INSERT INTO benefit (benefit_id,value,`level`,benefit_TYPE) VALUES
 	 (1,464.00,'Médio','Refeição'),
 	 (2,211.00,'Normal','Vale transporte'),
 	 (3,300.00,'Normal','Refeição'),

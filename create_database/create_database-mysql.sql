@@ -3,9 +3,9 @@
 CREATE TABLE client (
     f_name varchar(50),
     cpf varchar(11) PRIMARY KEY,
-    birth_date timestamp,
+    birth_date datetime,
     l_name varchar(50),
-    register_date timestamp
+    register_date datetime
 );
 
 CREATE TABLE employee (
@@ -13,9 +13,9 @@ CREATE TABLE employee (
     salary decimal(10,2),
     f_name varchar(50),
     cpf varchar(11) PRIMARY KEY,
-    birth_date timestamp,
+    birth_date datetime,
     l_name varchar(50),
-    register_date timestamp,
+    register_date datetime,
     department_id int
 );
 
@@ -23,9 +23,9 @@ CREATE TABLE dependent (
     relation varchar(50),
     f_name varchar(50),
     cpf varchar(11) PRIMARY KEY,
-    birth_date timestamp,
+    birth_date datetime,
     l_name varchar(50),
-    register_date timestamp,
+    register_date datetime,
     fk_employee_cpf varchar(11)
 );
 
@@ -33,16 +33,16 @@ CREATE TABLE benefit (
     benefit_id int PRIMARY KEY,
     value decimal(10,2),
     level varchar(50),
-    beneft_TYPE varchar(50)
+    benefit_TYPE varchar(50)
 );
 
 CREATE TABLE cash_outflow (
     payment_form varchar(50),
     tax decimal(10,2),
-    emission_date timestamp,
+    emission_date datetime,
     payment_id int PRIMARY KEY,
     value decimal(10,2),
-    quantity int,
+    quantitity int,
     cash_outflow_TYPE varchar(50),
     responsible_cpf varchar(11)
 );
@@ -54,10 +54,10 @@ CREATE TABLE hotel (
     number int,
     size_m2 decimal(10,2),
     hotel_TYPE varchar(50),
-    accept_animals smallint,
-    is_familiar smallint,
-    has_events smallint,
-    is_work smallint
+    accept_animals tinyint(1),
+    is_familiar tinyint(1),
+    has_events tinyint(1),
+    is_work tinyint(1)
 );
 
 CREATE TABLE bedroom (
@@ -67,21 +67,21 @@ CREATE TABLE bedroom (
     location varchar(50),
     bedroom_id int PRIMARY KEY,
     daily decimal(10,2),
-    living_room smallint,
-    washing_room smallint,
-    kitchen smallint,
-    wasshing_room smallint,
+    living_room tinyint(1),
+    washing_room tinyint(1),
+    kitchen tinyint(1),
+    wasshing_room tinyint(1),
     bedroom_TYPE varchar(50),
     hotel_id int
 );
 
 CREATE TABLE reservation (
-    checkin timestamp,
-    checkout timestamp,
+    checkin datetime,
+    checkout datetime,
     num_breakfast int,
     value decimal(10,2),
     reservation_id int PRIMARY KEY,
-    reservation_date timestamp,
+    reservation_date datetime,
     client_cpf varchar(11)
 );
 
@@ -95,7 +95,7 @@ CREATE TABLE product (
 
 CREATE TABLE reservation_period_bedroom (
     days int,
-    initial_date timestamp,
+    initial_date datetime,
     bedroom_id int,
     reservation_id int
 );
@@ -103,7 +103,7 @@ CREATE TABLE reservation_period_bedroom (
 CREATE TABLE parking_space (
     location varchar(50),
     daily_rate decimal(10,2),
-    preferential smallint,
+    preferential tinyint(1),
     parking_id int PRIMARY KEY,
     width decimal(10,2),
     length decimal(10,2),
@@ -119,7 +119,7 @@ CREATE TABLE company (
 
 CREATE TABLE event (
     n_days int,
-    initial_date timestamp,
+    initial_date datetime,
     value decimal(10,2),
     n_guests int,
     dress_code varchar(50),
@@ -155,7 +155,7 @@ CREATE TABLE cash_entry (
     payment_form varchar(50),
     value DECIMAL(10,2),
     tax decimal(10,2),
-    emission_date timestamp,
+    emission_date datetime,
     payment_id int PRIMARY KEY
 );
 
@@ -180,15 +180,15 @@ CREATE TABLE bedroom_product (
 );
 
 CREATE TABLE reservation_parking_space (
-    initial_date timestamp,
+    initial_date datetime,
     total_days int,
     reservation_id int,
     parking_id int
 );
 
 CREATE TABLE room (
-    final_date timestamp,
-    initial_date timestamp,
+    final_date datetime,
+    initial_date datetime,
     size_m2 decimal(10,2),
     location varchar(50),
     mensal_rent decimal(10,2),

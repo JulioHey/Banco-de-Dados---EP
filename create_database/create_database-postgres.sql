@@ -33,7 +33,7 @@ CREATE TABLE benefit (
     benefit_id int PRIMARY KEY,
     value decimal(10,2),
     level varchar(50),
-    beneft_TYPE varchar(50)
+    benefit_TYPE varchar(50)
 );
 
 CREATE TABLE cash_outflow (
