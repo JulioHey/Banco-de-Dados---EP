@@ -43,7 +43,6 @@ CREATE TABLE cash_outflow (
     payment_id int PRIMARY KEY,
     value decimal(10,2),
     quantitity int,
-    buy_value decimal(10,2),
     cash_outflow_TYPE varchar(50),
     responsible_cpf varchar(11)
 );

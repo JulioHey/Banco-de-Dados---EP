@@ -4,3 +4,4 @@
 - [ ] adicionar propriedade "value" DECIMAL(10,2) para tabela cash_entry
 - [ ] alterar todas ocorrências de cnpf para cnpj
 - [ ] Adicio
+- [ ] Remover buy_value da tabela cash_outflow no modelo lógico e relacional
