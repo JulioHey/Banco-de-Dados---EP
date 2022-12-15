@@ -5,3 +5,4 @@
 - [ ] alterar todas ocorrências de cnpf para cnpj
 - [ ] Adicio
 - [ ] Remover buy_value da tabela cash_outflow no modelo lógico e relacional
+- [ ] typo na tabela cash_outflow - coluna quantity no modelo lógico e relacional

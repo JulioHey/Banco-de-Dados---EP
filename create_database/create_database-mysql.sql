@@ -42,7 +42,7 @@ CREATE TABLE cash_outflow (
     emission_date timestamp,
     payment_id int PRIMARY KEY,
     value decimal(10,2),
-    quantitity int,
+    quantity int,
     cash_outflow_TYPE varchar(50),
     responsible_cpf varchar(11)
 );
