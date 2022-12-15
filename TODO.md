@@ -1,0 +1,6 @@
+- [ ] Arrumar tabela cash_entry_room (falta fk pra room)
+- [ ] Alterar tipo do roomTYPE pra varchar(50)
+- [ ] tabela reservation (typo reservation_date)
+- [ ] adicionar propriedade "value" DECIMAL(10,2) para tabela cash_entry
+- [ ] alterar todas ocorrências de cnpf para cnpj
+- [ ] Adicio
