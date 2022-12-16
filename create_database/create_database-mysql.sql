@@ -667,7 +667,7 @@ ALTER TABLE fidelity_program ADD CONSTRAINT FK_fidelity_program_2
  
 ALTER TABLE cash_outflow_campaign ADD CONSTRAINT FK_cash_outflow_campaign_2
     FOREIGN KEY (payment_id)
-    REFERENCES cash_entry (payment_id);
+    REFERENCES cash_outflow (payment_id);
  
 ALTER TABLE cash_outflow_campaign ADD CONSTRAINT FK_cash_outflow_campaign_3
     FOREIGN KEY (campaign_id)
