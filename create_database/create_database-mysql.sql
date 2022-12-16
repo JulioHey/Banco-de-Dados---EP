@@ -158,7 +158,9 @@ CREATE TABLE cash_entry (
     tax decimal(10,2),
     emission_date datetime,
     payment_id int PRIMARY KEY,
-    value decimal(10,2)
+    value decimal(10,2),
+    cupom_id varchar(50),
+    fk_cash_outflow_campaign_payment_id int
 );
 
 CREATE TABLE reservation_product (
@@ -211,7 +213,9 @@ CREATE TABLE cash_entry_event (
 CREATE TABLE cash_entry_reservation (
     missing_value decimal(10,2),
     payment_id int,
-    reservation_id int
+    reservation_id int,
+    discont_with_fidelity_points decimal(10,2),
+    fidelity_points_used int
 );
 
 CREATE TABLE cash_entry_room (
@@ -295,7 +299,7 @@ CREATE TABLE cupom (
     active tinyint(1),
     description varchar(50),
     valid_reservation tinyint(1),
-    cupom_id int PRIMARY KEY,
+    cumpom_id int PRIMARY KEY,
     code varchar(50),
     value_percentage decimal(2,2),
     value decimal(10,2),
@@ -350,6 +354,12 @@ CREATE TABLE fidelity_program (
     cpf varchar(11) PRIMARY KEY,
     points int,
     expire_at datetime
+);
+
+CREATE TABLE cash_outflow_campaign (
+    campaign_id int,
+    payment_id int,
+    PRIMARY KEY (campaign_id, payment_id)
 );
  
 ALTER TABLE employee ADD CONSTRAINT FK_employee_2
@@ -408,6 +418,14 @@ ALTER TABLE saloon ADD CONSTRAINT FK_saloon_2
 ALTER TABLE kitchen ADD CONSTRAINT FK_kitchen_2
     FOREIGN KEY (room_id)
     REFERENCES room (room_id);
+ 
+ALTER TABLE cash_entry ADD CONSTRAINT FK_cash_entry_2
+    FOREIGN KEY (cupom_id)
+    REFERENCES cupom (Id);
+ 
+ALTER TABLE cash_entry ADD CONSTRAINT FK_cash_entry_3
+    FOREIGN KEY (fk_cash_outflow_campaign_payment_id, ???)
+    REFERENCES cash_outflow_campaign (payment_id, ???);
  
 ALTER TABLE reservation_product ADD CONSTRAINT FK_reservation_product_1
     FOREIGN KEY (reservation_id)
@@ -596,6 +614,10 @@ ALTER TABLE campaigns ADD CONSTRAINT FK_campaigns_1
     FOREIGN KEY (dept_id)
     REFERENCES department (department_id);
  
+ALTER TABLE campaigns ADD CONSTRAINT FK_campaigns_3
+    FOREIGN KEY (initial_date, ???)
+    REFERENCES cash_outflow_campaign (campaign_id, ???);
+ 
 ALTER TABLE dish ADD CONSTRAINT FK_dish_2
     FOREIGN KEY (restaurant_id)
     REFERENCES restaurant (restaurant_id)
@@ -633,3 +655,11 @@ ALTER TABLE petshop_client_payment ADD CONSTRAINT FK_petshop_client_payment_4
 ALTER TABLE fidelity_program ADD CONSTRAINT FK_fidelity_program_2
     FOREIGN KEY (cpf)
     REFERENCES client (cpf);
+ 
+ALTER TABLE cash_outflow_campaign ADD CONSTRAINT FK_cash_outflow_campaign_2
+    FOREIGN KEY (payment_id)
+    REFERENCES cash_entry (payment_id);
+ 
+ALTER TABLE cash_outflow_campaign ADD CONSTRAINT FK_cash_outflow_campaign_3
+    FOREIGN KEY (campaign_id)
+    REFERENCES campaigns (campaign_id);
