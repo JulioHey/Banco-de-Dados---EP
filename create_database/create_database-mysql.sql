@@ -83,7 +83,7 @@ CREATE TABLE reservation (
     reservation_id int PRIMARY KEY,
     reservation_date datetime,
     client_cpf varchar(11),
-    fidelity_points int
+    fidelity_points int as (value * 0.05)
 );
 
 CREATE TABLE product (
