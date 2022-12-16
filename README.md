@@ -1,1 +1,1 @@
-- [ ] adicionar primary keys compostas nas relações n pra m
+- [ ] na tabela cash_outflow_campaign, precisa mudar a fk do payment_id pra referenciar o cash_outflow

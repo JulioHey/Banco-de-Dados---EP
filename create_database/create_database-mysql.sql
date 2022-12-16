@@ -558,12 +558,12 @@ ALTER TABLE supervision ADD CONSTRAINT FK_supervision_2
 ALTER TABLE benefit_employee ADD CONSTRAINT FK_benefit_employee_1
     FOREIGN KEY (benefit_id)
     REFERENCES benefit (benefit_id)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
 ALTER TABLE benefit_employee ADD CONSTRAINT FK_benefit_employee_2
     FOREIGN KEY (employee_cpf)
     REFERENCES employee (cpf)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
 ALTER TABLE received_payment ADD CONSTRAINT FK_received_payment_1
     FOREIGN KEY (payment_id)
@@ -588,12 +588,12 @@ ALTER TABLE event_saloon ADD CONSTRAINT FK_event_saloon_2
 ALTER TABLE saloon_kitchen ADD CONSTRAINT FK_saloon_kitchen_1
     FOREIGN KEY (kitchen_id)
     REFERENCES kitchen (kitchen_id)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
 ALTER TABLE saloon_kitchen ADD CONSTRAINT FK_saloon_kitchen_2
     FOREIGN KEY (saloon_id)
     REFERENCES saloon (saloon_id)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
 ALTER TABLE cash_outflow_product ADD CONSTRAINT FK_cash_outflow_product_1
     FOREIGN KEY (product_id)
@@ -612,7 +612,7 @@ ALTER TABLE employee_room ADD CONSTRAINT FK_employee_room_1
 ALTER TABLE employee_room ADD CONSTRAINT FK_employee_room_2
     FOREIGN KEY (employee_cpf)
     REFERENCES employee (cpf)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
 ALTER TABLE employee_saloon ADD CONSTRAINT FK_employee_saloon_1
     FOREIGN KEY (saloon_id)
@@ -622,7 +622,7 @@ ALTER TABLE employee_saloon ADD CONSTRAINT FK_employee_saloon_1
 ALTER TABLE employee_saloon ADD CONSTRAINT FK_employee_saloon_2
     FOREIGN KEY (employee_cpf)
     REFERENCES employee (cpf)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
 ALTER TABLE cupom ADD CONSTRAINT FK_cupom_2
     FOREIGN KEY (campaign_id)
