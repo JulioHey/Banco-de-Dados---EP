@@ -98,7 +98,8 @@ CREATE TABLE reservation_period_bedroom (
     days int,
     initial_date datetime,
     bedroom_id int,
-    reservation_id int
+    reservation_id int,
+    PRIMARY KEY (bedroom_id, reservation_id)
 );
 
 CREATE TABLE parking_space (
@@ -165,28 +166,32 @@ CREATE TABLE cash_entry (
 CREATE TABLE reservation_product (
     quantity int,
     reservation_id int,
-    product_id int
+    product_id int,
+    PRIMARY KEY (reservation_id, product_id)
 );
 
 CREATE TABLE hotel_product (
     stock int,
     min_stock int,
     hotel_id int,
-    product_id int
+    product_id int,
+    PRIMARY KEY (product_id, hotel_id)
 );
 
 CREATE TABLE bedroom_product (
     min_stock int,
     stock int,
     bedroom_id int,
-    product_id int
+    product_id int,
+    PRIMARY KEY (bedroom_id, product_id)
 );
 
 CREATE TABLE reservation_parking_space (
     initial_date datetime,
     total_days int,
     reservation_id int,
-    parking_id int
+    parking_id int,
+    PRIMARY KEY (reservation_id, parking_id, initial_date)
 );
 
 CREATE TABLE room (
@@ -206,7 +211,8 @@ CREATE TABLE room (
 CREATE TABLE cash_entry_event (
     missing_value decimal(10,2),
     payment_id int,
-    event_id int
+    event_id int,
+    PRIMARY KEY (payment_id, event_id)
 );
 
 CREATE TABLE cash_entry_reservation (
@@ -214,7 +220,8 @@ CREATE TABLE cash_entry_reservation (
     payment_id int,
     reservation_id int,
     discont_with_fidelity_points decimal(10,2),
-    fidelity_points_used int
+    fidelity_points_used int,
+    PRIMARY KEY (reservation_id, payment_id)
 );
 
 CREATE TABLE cash_entry_room (
@@ -246,52 +253,62 @@ CREATE TABLE restaurant_product (
     stock int,
     min_stock int,
     restaurant_id int,
-    product_id int
+    product_id int,
+    PRIMARY KEY (restaurant_id, product_id)
 );
 
 CREATE TABLE cash_entry_restaurant (
     restaurant_id int,
-    payment_id int
+    payment_id int,
+    PRIMARY KEY (restaurant_id, payment_id)
 );
 
 CREATE TABLE supervision (
     supervisor_cpf varchar(11),
-    employee_cpf varchar(11)
+    employee_cpf varchar(11),
+    PRIMARY KEY (employee_cpf, supervisor_cpf)
 );
 
 CREATE TABLE benefit_employee (
     benefit_id int,
-    employee_cpf varchar(11)
+    employee_cpf varchar(11),
+    PRIMARY KEY (benefit_id, employee_cpf)
 );
 
 CREATE TABLE received_payment (
     payment_id int,
-    employee_cpf varchar(11)
+    employee_cpf varchar(11),
+    PRIMARY KEY (employee_cpf, payment_id)
 );
 
 CREATE TABLE event_saloon (
     saloon_id int,
-    event_id int
+    event_id int,
+    PRIMARY KEY (saloon_id, event_id)
 );
 
 CREATE TABLE saloon_kitchen (
     kitchen_id int,
-    saloon_id int
+    saloon_id int,
+    PRIMARY KEY (kitchen_id, saloon_id)
 );
 
 CREATE TABLE cash_outflow_product (
     product_id int,
-    payment_id int
+    payment_id int,
+    PRIMARY KEY (product_id, payment_id)
 );
 
 CREATE TABLE employee_room (
     room_id int,
-    employee_cpf varchar(11)
+    employee_cpf varchar(11),
+    PRIMARY KEY (employee_cpf, room_id)
 );
 
 CREATE TABLE employee_saloon (
     saloon_id int,
-    employee_cpf varchar(11)
+    employee_cpf varchar(11),
+    PRIMARY KEY (saloon_id, employee_cpf)
 );
 
 CREATE TABLE cupom (
@@ -336,7 +353,8 @@ CREATE TABLE petshop_product (
     min_stock int,
     stock int,
     petshop_id int,
-    product_id int
+    product_id int,
+    PRIMARY KEY (petshop_id, product_id)
 );
 
 CREATE TABLE petshop_client_payment (
