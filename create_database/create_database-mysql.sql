@@ -159,8 +159,7 @@ CREATE TABLE cash_entry (
     emission_date datetime,
     payment_id int PRIMARY KEY,
     value decimal(10,2),
-    cupom_id varchar(50),
-    fk_cash_outflow_campaign_payment_id int
+    cupom_id int
 );
 
 CREATE TABLE reservation_product (
@@ -299,7 +298,7 @@ CREATE TABLE cupom (
     active tinyint(1),
     description varchar(50),
     valid_reservation tinyint(1),
-    cumpom_id int PRIMARY KEY,
+    cupom_id int PRIMARY KEY,
     code varchar(50),
     value_percentage decimal(2,2),
     value decimal(10,2),
@@ -421,11 +420,7 @@ ALTER TABLE kitchen ADD CONSTRAINT FK_kitchen_2
  
 ALTER TABLE cash_entry ADD CONSTRAINT FK_cash_entry_2
     FOREIGN KEY (cupom_id)
-    REFERENCES cupom (Id);
- 
-ALTER TABLE cash_entry ADD CONSTRAINT FK_cash_entry_3
-    FOREIGN KEY (fk_cash_outflow_campaign_payment_id, ???)
-    REFERENCES cash_outflow_campaign (payment_id, ???);
+    REFERENCES cupom (cupom_id);
  
 ALTER TABLE reservation_product ADD CONSTRAINT FK_reservation_product_1
     FOREIGN KEY (reservation_id)
@@ -613,10 +608,6 @@ ALTER TABLE cupom ADD CONSTRAINT FK_cupom_2
 ALTER TABLE campaigns ADD CONSTRAINT FK_campaigns_1
     FOREIGN KEY (dept_id)
     REFERENCES department (department_id);
- 
-ALTER TABLE campaigns ADD CONSTRAINT FK_campaigns_3
-    FOREIGN KEY (initial_date, ???)
-    REFERENCES cash_outflow_campaign (campaign_id, ???);
  
 ALTER TABLE dish ADD CONSTRAINT FK_dish_2
     FOREIGN KEY (restaurant_id)
