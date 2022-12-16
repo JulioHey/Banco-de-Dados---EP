@@ -260,6 +260,7 @@ CREATE TABLE restaurant_product (
 CREATE TABLE cash_entry_restaurant (
     restaurant_id int,
     payment_id int,
+    client_cpf varchar(11),
     PRIMARY KEY (restaurant_id, payment_id)
 );
 
@@ -539,6 +540,10 @@ ALTER TABLE cash_entry_restaurant ADD CONSTRAINT FK_cash_entry_restaurant_1
 ALTER TABLE cash_entry_restaurant ADD CONSTRAINT FK_cash_entry_restaurant_2
     FOREIGN KEY (payment_id)
     REFERENCES cash_entry (payment_id);
+ 
+ALTER TABLE cash_entry_restaurant ADD CONSTRAINT FK_cash_entry_restaurant_4
+    FOREIGN KEY (client_cpf)
+    REFERENCES client (cpf);
  
 ALTER TABLE supervision ADD CONSTRAINT FK_supervision_1
     FOREIGN KEY (supervisor_cpf)
