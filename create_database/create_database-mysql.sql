@@ -2,7 +2,7 @@
 
 CREATE TABLE client (
     f_name varchar(50),
-    cpf varchar(50) PRIMARY KEY,
+    cpf varchar(11) PRIMARY KEY,
     birth_date datetime,
     l_name varchar(50),
     register_date datetime
@@ -33,7 +33,7 @@ CREATE TABLE benefit (
     benefit_id int PRIMARY KEY,
     value decimal(10,2),
     level varchar(50),
-    beneft_TYPE varchar(50)
+    benefit_TYPE varchar(50)
 );
 
 CREATE TABLE cash_outflow (
@@ -82,8 +82,8 @@ CREATE TABLE reservation (
     value decimal(10,2),
     reservation_id int PRIMARY KEY,
     reservation_date datetime,
-    client_cpf varchar(50),
-    quanitity_points int
+    client_cpf varchar(11),
+    fidelity_points int
 );
 
 CREATE TABLE product (
@@ -128,7 +128,7 @@ CREATE TABLE event (
     event_id int PRIMARY KEY,
     event_TYPE varchar(50),
     fk_company_cnpj varchar(14),
-    fk_client_cpf varchar(50)
+    fk_client_cpf varchar(11)
 );
 
 CREATE TABLE saloon (
@@ -295,11 +295,11 @@ CREATE TABLE cupom (
     active tinyint(1),
     description varchar(50),
     valid_reservation tinyint(1),
-    Id varchar(50) PRIMARY KEY,
+    cupom_id int PRIMARY KEY,
     code varchar(50),
     value_percentage decimal(2,2),
     value decimal(10,2),
-    Cupom_TIPO varchar(50),
+    cupom_TYPE varchar(50),
     campaign_id int
 );
 
@@ -342,12 +342,12 @@ CREATE TABLE petshop_client_payment (
     service_type varchar(50),
     value decimal(10,2),
     petshop_id int,
-    cpf varchar(50),
+    cpf varchar(11),
     payment_id int PRIMARY KEY
 );
 
 CREATE TABLE fidelity_program (
-    cpf varchar(50) PRIMARY KEY,
+    cpf varchar(11) PRIMARY KEY,
     points int,
     expire_at datetime
 );

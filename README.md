@@ -8,3 +8,8 @@
 - [ ] typo na tabela cash_outflow - coluna quantity no modelo lógico e relacional
 - [ ] mudar tipo da coluna parking_space_TYPE na tabela parking_space para varchar(50) no modelo lógico
 - [ ] typo na tabela benefit - beneft no modelo lógico e relacional
+- [ ] mudar ocorrências de cpf varchar(50) para varchar(11). cnpj para varchar(14)
+- [ ] adicionar primary keys compostas nas relações n pra m
+- [ ] tabela reservation - alterar quanitity_points para fidelity_points
+- [ ] tabela cupom - alterar id para cupom_id int
+- [ ] tabela cupom - alterar cupom_TIPO para cupom_TYPE
