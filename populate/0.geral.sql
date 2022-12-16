@@ -1,10 +1,10 @@
+-- Para gerar: ls -v *.sql | xargs cat >> 0.geral
 INSERT INTO hotel (hotel_id,fantasy_name,cep,`number`,size_m2,hotel_TYPE,accept_animals,is_familiar,has_events,is_work) VALUES
 	 (1,'Hotel 1','11111-111',1,111.11,'Hotel Tradicional',0,1,0,0),
 	 (2,'Hotel 2','22222-222',2,222.22,'Hotel Tradicional',1,1,0,0),
 	 (3,'Hotel 3','33333-333',3,333.33,'Hotel Tradicional',1,1,0,0),
 	 (4,'Hotel 4','44444-444',4,444.44,'Hotel Tradicional',0,1,1,0),
 	 (5,'Hotel 5','55555-555',5,555.55,'Hotel Tradicional',1,1,1,1);
-
 INSERT INTO bedroom (n_bathrooms,max_guests,is_clean,location,bedroom_id,daily,living_room,washing_room,kitchen,wasshing_room,bedroom_TYPE,hotel_id) VALUES
 	 (3,5,0,'1',1,184.00,1,1,1,0,'Chalé',1),
 	 (2,7,1,'2',2,194.00,0,0,1,1,'Chalé',1),
@@ -33,14 +33,14 @@ INSERT INTO bedroom (n_bathrooms,max_guests,is_clean,location,bedroom_id,daily,l
 	 (1,10,0,'3',23,101.00,0,0,1,1,'Suite',5),
 	 (3,4,0,'4',24,139.00,1,1,0,0,'Chalé',5),
 	 (2,4,1,'5',25,199.00,0,1,0,0,'Suite',5);
-
 INSERT INTO product (last_buy_value,name,description,sell_value,product_id) VALUES
 	 (2,'Barra de cereais','Alimento',3.00,1),
 	 (1,'Doce','Alimento',2.00,2),
 	 (3,'Café','Alimento',5.00,3),
 	 (5,'Toalha','Higiene',10.00,4),
-	 (5,'Sabonete','Higiene',10.00,5);
-
+	 (5,'Sabonete','Higiene',10.00,5),
+	 (30,'Remédio para otite canine','Medicina',50.00,6),
+	 (40,'Shampoo para animais','Higiene',70.00,7);
 INSERT INTO bedroom_product (min_stock,stock,bedroom_id,product_id) VALUES
 	 (20,30,1,1),
 	 (10,25,2,2),
@@ -76,37 +76,34 @@ INSERT INTO bedroom_product (min_stock,stock,bedroom_id,product_id) VALUES
 	 (30,43,5,5);
 INSERT INTO bedroom_product (min_stock,stock,bedroom_id,product_id) VALUES
 	 (20,35,6,1);
-
 INSERT INTO benefit (benefit_id,value,`level`,benefit_TYPE) VALUES
 	 (1,464.00,'Médio','Refeição'),
 	 (2,211.00,'Normal','Vale transporte'),
 	 (3,300.00,'Normal','Refeição'),
 	 (4,695.00,'Alto','Alimentação'),
 	 (5,928.00,'Alto','Plano de Saúde');
-
 INSERT INTO department (department_name,responsability,department_id,manager_cpf,hotel_id) VALUES
 	 ('Recursos Humanos','Recursos Humanos',1,NULL,1),
 	 ('Financeiro','Financeiro',2,NULL,1),
-	 ('Logística','Logística',3,NULL,1),
+	 ('Marketing','Marketing',3,NULL,1),
 	 ('Operações','Operações',4,NULL,1),
 	 ('Recursos Humanos','Recursos Humanos',5,NULL,2),
 	 ('Financeiro','Financeiro',6,NULL,2),
-	 ('Logística','Logística',7,NULL,2),
+	 ('Marketing','Marketing',7,NULL,2),
 	 ('Operações','Operações',8,NULL,2),
 	 ('Recursos Humanos','Recursos Humanos',9,NULL,3),
 	 ('Financeiro','Financeiro',10,NULL,3);
 INSERT INTO department (department_name,responsability,department_id,manager_cpf,hotel_id) VALUES
-	 ('Logística','Logística',11,NULL,3),
+	 ('Marketing','Marketing',11,NULL,3),
 	 ('Operações','Operações',12,NULL,3),
 	 ('Recursos Humanos','Recursos Humanos',13,NULL,4),
 	 ('Financeiro','Financeiro',14,NULL,4),
-	 ('Logística','Logística',15,NULL,4),
+	 ('Marketing','Marketing',15,NULL,4),
 	 ('Operações','Operações',16,NULL,4),
 	 ('Recursos Humanos','Recursos Humanos',17,NULL,5),
 	 ('Financeiro','Financeiro',18,NULL,5),
-	 ('Logística','Logística',19,NULL,5),
+	 ('Marketing','Marketing',19,NULL,5),
 	 ('Operações','Operações',20,NULL,5);
-
 INSERT INTO employee (office,salary,f_name,cpf,birth_date,l_name,register_date,department_id) VALUES
 	 ('Analista',8140.00,'Kelly','12673786081','2000-12-13 16:44:56','Bryan','2019-05-11 13:51:28',14),
 	 ('Gerente',29143.00,'Bruno','13144156188','1995-05-04 14:11:01','Golden','2020-08-10 17:44:53',5),
@@ -217,7 +214,6 @@ INSERT INTO employee (office,salary,f_name,cpf,birth_date,l_name,register_date,d
 	 ('Analista',2766.00,'Lenore','97465530561','1991-05-05 10:25:46','Wise','2020-01-15 09:16:40',15),
 	 ('Analista',2657.00,'Holmes','97810080291','1993-05-19 16:19:49','Hurst','2020-10-18 03:57:05',16),
 	 ('Coordenador',23460.00,'Lisandra','99518031149','1992-04-04 04:12:36','Fitzpatrick','2020-06-30 03:04:09',4);
-
 --  Auto-generated SQL script #202212142331
 UPDATE department
 	SET manager_cpf='34190494541'
@@ -279,7 +275,6 @@ UPDATE department
 UPDATE department
 	SET manager_cpf='85535105936'
 	WHERE department_id=20;
-
 INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value) VALUES
 	 ('pix',5.00,'2022-03-22 04:06:08',1,945.12),
 	 ('pix',5.25,'2021-07-08 21:52:38',2,530.30),
@@ -318,16 +313,16 @@ INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value) VALUES
 	 ('pix',12.50,'2022-01-15 05:51:29',32,925.19),
 	 ('pix',1.50,'2022-03-25 21:30:16',33,779.92),
 	 ('pix',18.25,'2023-09-26 00:55:55',34,124.01),
-	 ('pix',13.00,'2023-06-16 19:09:52',35,880.29),
-	 ('pix',7.25,'2023-05-24 12:10:53',36,329.42),
-	 ('pix',14.75,'2022-04-08 18:28:36',37,706.23),
-	 ('pix',10.75,'2023-12-14 16:22:08',38,642.90),
-	 ('pix',0.25,'2023-03-18 11:19:11',39,995.82),
-	 ('pix',13.50,'2021-05-31 04:05:16',40,250.40);
+	 ('pix',13.00,'2023-06-16 19:09:52',35,400.00),
+	 ('pix',7.25,'2023-05-24 12:10:53',36,300.00),
+	 ('pix',14.75,'2022-04-08 18:28:36',37,100.00),
+	 ('pix',10.75,'2023-12-14 16:22:08',38,550.00),
+	 ('pix',0.25,'2023-03-18 11:19:11',39,1400.00),
+	 ('pix',13.50,'2021-05-31 04:05:16',40,300.00);
 INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value) VALUES
-	 ('pix',15.75,'2022-09-08 05:07:20',41,864.54),
-	 ('pix',0.75,'2022-02-14 10:18:16',42,771.48),
-	 ('pix',8.00,'2023-01-09 13:11:34',43,263.80),
+	 ('pix',15.75,'2022-09-08 05:07:20',41,200.00),
+	 ('pix',0.75,'2022-02-14 10:18:16',42,250.00),
+	 ('pix',8.00,'2023-01-09 13:11:34',43,600.00),
 	 ('pix',13.50,'2022-12-08 07:01:05',44,704.57),
 	 ('pix',4.00,'2023-03-07 10:21:54',45,831.43),
 	 ('pix',24.50,'2023-11-14 05:53:57',46,143.44),
@@ -509,8 +504,13 @@ INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value) VALUES
 	 ('ted',5.00,'2022-03-22 04:06:08',206,149.00),
 	 ('ted',9.75,'2022-06-14 17:53:45',207,55.00),
 	 ('cartão',9.00,'2021-11-01 13:42:41',208,86.00),
-	 ('cartão',9.00,'2021-12-01 13:42:41',209,64.00);
-
+	 ('cartão',9.00,'2021-12-01 13:42:41',209,64.00),
+	 ('ted',9.00,'2021-11-01 13:42:41',210,1642.29);
+INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value) VALUES
+	 ('ted',9.00,'2021-12-01 13:42:41',211,1642.29),
+	 ('ted',9.00,'2022-01-01 13:42:41',212,1012.28),
+	 ('ted',9.00,'2021-11-01 13:42:41',213,1862.36),
+	 ('ted',9.00,'2021-12-01 13:42:41',214,1862.35);
 INSERT INTO company (cnpj,fantasy_name,sector) VALUES
 	 ('17302434705304','Jerde Group','Consumer Services'),
 	 ('18940924979145','Strosin Inc','Health Care'),
@@ -533,7 +533,6 @@ INSERT INTO company (cnpj,fantasy_name,sector) VALUES
 	 ('83025979169998','Stehr-Homenick','Consumer Non-Durables'),
 	 ('92917438849286','Feil, Senger and Bins','Consumer Non-Durables'),
 	 ('94941420315746','Wiza, Schumm and Reinger','Finance');
-
 INSERT INTO client (f_name,cpf,birth_date,l_name,register_date) VALUES
 	 ('Francis','11653758376','1965-11-14 00:49:15','Booth','2020-09-26 00:28:45'),
 	 ('Skyler','14684895849','1960-07-13 17:46:29','Montgomery','2022-01-10 06:52:50'),
@@ -644,7 +643,6 @@ INSERT INTO client (f_name,cpf,birth_date,l_name,register_date) VALUES
 	 ('Phelan','99141366565','1965-08-07 07:26:07','Head','2021-11-25 19:02:47'),
 	 ('Lars','99302352877','1991-06-18 23:09:55','Stout','2022-02-05 15:25:16'),
 	 ('Veronica','99371732354','1962-04-28 02:56:08','Simon','2020-02-02 21:30:46');
-
 INSERT INTO event (n_days,initial_date,value,n_guests,dress_code,event_id,event_TYPE,fk_company_cnpj,fk_client_cpf) VALUES
 	 (11,'2022-12-22 14:46:08',41799.00,141,'Casual',1,'Empresarial','17302434705304',NULL),
 	 (8,'2022-11-23 00:36:39',35627.00,384,'Esportivo',4,'Empresarial','18940924979145',NULL),
@@ -667,14 +665,12 @@ INSERT INTO event (n_days,initial_date,value,n_guests,dress_code,event_id,event_
 	 (20,'2023-02-03 05:38:05',43771.00,198,'Casual',16,'Pessoal',NULL,'26980211027'),
 	 (8,'2022-12-30 07:51:37',38204.00,332,'Esportivo',17,'Pessoal',NULL,'27779345994'),
 	 (10,'2022-10-20 09:18:04',36368.00,34,'Esportivo',19,'Pessoal',NULL,'29392753217');
-	
 INSERT INTO cash_entry_event (missing_value,payment_id,event_id) VALUES
 	 (4421.18,39,3),
 	 (1393.36,13,11),
 	 (1393.36,202,15),
 	 (2708.50,203,5),
 	 (0.00,204,5);
-
 INSERT INTO reservation (checkin,checkout,num_breakfast,value,reservation_id,reservation_date,client_cpf) VALUES
 	 ('2021-12-02 04:44:39','2021-12-08 11:27:21',4,92.00,1,'2021-11-29 01:52:58','11653758376'),
 	 ('2021-12-03 21:02:05','2021-12-06 14:38:46',3,149.00,2,'2021-11-29 17:25:48','14684895849'),
@@ -697,16 +693,13 @@ INSERT INTO reservation (checkin,checkout,num_breakfast,value,reservation_id,res
 	 ('2021-12-03 16:00:23','2021-12-07 19:24:00',5,188.00,18,'2021-11-28 08:05:33','29392753217'),
 	 ('2021-12-03 04:54:20','2021-12-08 07:53:48',3,117.00,19,'2021-11-28 07:48:30','30710264073'),
 	 ('2021-12-04 14:37:41','2021-12-09 10:14:20',2,166.00,20,'2021-11-28 09:40:05','41107870868');
-
-	
 INSERT INTO cash_entry_reservation (missing_value,payment_id,reservation_id) VALUES
 	 (0.0,205,1),
 	 (0.0,206,2),
 	 (0.0,207,3),
 	 (0.0,208,4),
 	 (0.0,209,5);
-
-INSERT INTO restaurant (name,restaurant_id,`type`,room_service,location,fk_hotel_hotel_id,fk_department_department_id) VALUES
+INSERT INTO restaurant (name,restaurant_id,`type`,room_service,location,fk_hotel_hotel_id,department_id) VALUES
 	 ('Belo Sabor',1,'Brasileira',1,'Térreo',1,4),
 	 ('Bem Servido',2,'Brasileira',1,'Térreo',2,8),
 	 ('Bom Apetite',3,'Brasileira',1,'Térreo',3,12),
@@ -714,7 +707,6 @@ INSERT INTO restaurant (name,restaurant_id,`type`,room_service,location,fk_hotel
 	 ('Casa da Sogra',5,'Brasileira',0,'Térreo',5,20),
 	 ('Origami',6,'Japonesa',0,'Térreo',5,20),
 	 ('Aladin',7,'Árabe',1,'Térreo',4,16);
-
 INSERT INTO cash_entry_restaurant (restaurant_id,payment_id) VALUES
 	 (1,1),
 	 (2,2),
@@ -726,8 +718,6 @@ INSERT INTO cash_entry_restaurant (restaurant_id,payment_id) VALUES
 	 (1,8),
 	 (2,9),
 	 (3,10);
-	
-	
 INSERT INTO room (final_date,initial_date,size_m2,location,mensal_rent,weekly_rent,room_id,deposit_area,room_TYPE,hotel_id,company_cnpj) VALUES
 	 ('2022-02-07 03:17:06','2021-11-23 05:58:53',88.00,'2',1916.00,547.43,1,54.00,'interna',3,'17302434705304'),
 	 ('2021-12-30 10:46:25','2021-11-23 18:57:44',60.00,'2',2897.00,827.71,2,51.00,'interna',2,'18940924979145'),
@@ -750,7 +740,6 @@ INSERT INTO room (final_date,initial_date,size_m2,location,mensal_rent,weekly_re
 	 ('2022-02-15 17:54:09','2021-11-18 10:01:06',48.00,'2',1209.00,345.43,18,56.00,'externa',4,'83025979169998'),
 	 ('2022-02-03 18:36:20','2021-11-18 15:37:01',84.00,'1',1428.00,408.00,19,66.00,'externa',1,'92917438849286'),
 	 ('2022-01-26 07:01:37','2021-11-23 23:45:50',34.00,'1',1763.00,503.71,20,93.00,'externa',2,'92917438849286');
-
 INSERT INTO dependent (relation,f_name,cpf,birth_date,l_name,register_date,fk_employee_cpf) VALUES
 	 ('Jamalia Middleton','Natalie','17367007847','2004-07-13 16:39:50','Rios','2023-09-20 15:39:59','12673786081'),
 	 ('Flavia Lester','Chaim','31011004074','2020-01-19 02:42:54','Fitzpatrick','2022-06-04 03:03:27','13144156188'),
@@ -762,7 +751,6 @@ INSERT INTO dependent (relation,f_name,cpf,birth_date,l_name,register_date,fk_em
 	 ('Iliana Jarvis','Iliana','76108472234','2010-09-13 17:49:27','Weiss','2023-11-01 21:57:49','38192374273'),
 	 ('Arthur Cummings','Madeline','80180923061','2010-06-18 02:22:39','Bean','2020-03-06 14:20:46','38192374273'),
 	 ('Portia Allison','Brenden','84940100144','2002-01-03 23:57:53','Mckinney','2021-06-17 02:20:11','21670209596');
-
 INSERT INTO supervision (supervisor_cpf,employee_cpf) VALUES
 	 ('29458660053','12673786081'),
 	 ('68553295471','13616560396'),
@@ -851,8 +839,6 @@ INSERT INTO supervision (supervisor_cpf,employee_cpf) VALUES
 	 ('90098653640','79924936337'),
 	 ('86388311345','94828086274'),
 	 ('22389034833','99518031149');
-
-	
 INSERT INTO benefit_employee (benefit_id,employee_cpf) VALUES
 	 (1,'13144156188'),
 	 (1,'22389034833'),
@@ -1073,8 +1059,7 @@ INSERT INTO benefit_employee (benefit_id,employee_cpf) VALUES
 	 (2,'56504358591'),
 	 (2,'57223779143'),
 	 (2,'60531003052');
-
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('pix',28.71,'2022-12-13 12:07:50',1,224.11,1,'produto','50815306335'),
 	 ('dinheiro',20.01,'2022-12-14 14:44:23',2,239.69,9,'produto','14818681805'),
 	 ('cartão',26.83,'2022-12-06 05:16:47',3,451.64,4,'produto','12673786081'),
@@ -1085,7 +1070,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('dinheiro',39.98,'2022-12-04 16:59:33',8,931.91,2,'produto','17740385403'),
 	 ('pix',15.56,'2022-12-09 00:02:42',9,138.78,4,'produto','76118861344'),
 	 ('dinheiro',33.04,'2022-12-12 04:53:46',10,505.26,7,'produto','29458660053');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('cartão',13.43,'2022-12-13 10:43:45',11,468.50,4,'produto','30472748744'),
 	 ('ted',34.31,'2022-12-12 19:33:17',12,557.42,9,'produto','65712806293'),
 	 ('pix',25.58,'2022-12-04 06:05:06',13,58.83,7,'produto','14818681805'),
@@ -1096,7 +1081,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('cartão',37.69,'2022-12-09 05:26:19',18,343.06,4,'produto','64746147704'),
 	 ('pix',22.52,'2022-12-17 02:46:01',19,666.07,8,'produto','30472748744'),
 	 ('dinheiro',33.99,'2022-12-10 16:54:36',20,55.68,6,'produto','29415257674');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('cartão',12.83,'2022-12-07 23:07:05',21,95.67,3,'produto','56504358591'),
 	 ('dinheiro',39.43,'2022-12-17 17:00:59',22,425.91,5,'produto','47913471837'),
 	 ('ted',38.01,'2022-12-13 23:56:46',23,560.32,7,'produto','92748031008'),
@@ -1107,7 +1092,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('cartão',19.41,'2022-12-09 21:22:13',28,56.45,7,'produto','76118861344'),
 	 ('ted',27.20,'2022-12-03 03:02:26',29,598.88,7,'produto','79739723559'),
 	 ('dinheiro',23.57,'2022-12-19 10:59:50',30,218.94,1,'produto','49185410172');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('pix',7.89,'2022-12-01 21:03:21',31,864.91,3,'produto','18217498915'),
 	 ('ted',6.45,'2022-12-03 09:00:22',32,403.42,6,'produto','65801393729'),
 	 ('cartão',13.20,'2022-12-01 23:32:04',33,470.34,2,'produto','47913471837'),
@@ -1118,7 +1103,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',39.01,'2022-12-16 15:50:11',38,196.66,4,'produto','17740385403'),
 	 ('dinheiro',5.63,'2022-12-10 03:41:34',39,263.23,8,'produto','29415257674'),
 	 ('pix',12.95,'2022-12-10 23:35:04',40,840.49,7,'produto','56504358591');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('cartão',30.83,'2022-12-09 15:01:33',41,986.14,7,'produto','50838196403'),
 	 ('dinheiro',18.80,'2022-12-05 23:42:33',42,78.83,5,'produto','47913471837'),
 	 ('cartão',15.53,'2022-12-13 01:10:37',43,203.41,10,'produto','76118861344'),
@@ -1129,7 +1114,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('cartão',6.28,'2022-12-03 02:57:40',48,353.76,4,'produto','65712806293'),
 	 ('ted',18.94,'2022-12-02 23:36:23',49,266.62,9,'produto','65712806293'),
 	 ('cartão',27.61,'2022-12-06 02:57:50',50,365.41,9,'produto','79739723559');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('cartão',10.55,'2022-12-13 20:59:22',51,803.64,1,'produto','29415257674'),
 	 ('dinheiro',26.21,'2022-12-20 01:05:30',52,157.08,7,'produto','23021042410'),
 	 ('ted',6.28,'2022-12-05 15:48:41',53,987.60,4,'produto','56504358591'),
@@ -1140,7 +1125,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('pix',10.45,'2022-12-15 15:10:12',58,301.30,2,'produto','17740385403'),
 	 ('ted',11.58,'2022-12-19 13:18:32',59,242.26,2,'produto','70101665818'),
 	 ('pix',13.61,'2022-12-13 12:44:12',60,475.49,4,'produto','70101665818');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('cartão',19.01,'2022-12-05 01:01:23',61,775.92,3,'produto','14818681805'),
 	 ('dinheiro',12.29,'2022-12-12 02:53:13',62,227.48,3,'produto','64746147704'),
 	 ('ted',27.97,'2022-12-05 05:10:41',63,110.32,8,'produto','92748031008'),
@@ -1151,7 +1136,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.51,'2022-12-06 18:51:35',68,301.50,5,'produto','30472748744'),
 	 ('ted',34.46,'2022-12-18 22:46:17',69,179.45,9,'produto','92748031008'),
 	 ('pix',26.67,'2022-12-09 00:33:18',70,214.49,7,'produto','30472748744');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',19.09,'2022-12-15 18:01:36',71,596.97,7,'produto','56504358591'),
 	 ('cartão',26.58,'2022-12-16 09:43:51',72,167.27,3,'produto','80599821912'),
 	 ('ted',28.18,'2022-12-01 19:01:40',73,187.50,7,'produto','92748031008'),
@@ -1162,7 +1147,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',27.87,'2022-12-08 08:46:36',78,905.01,5,'produto','29415257674'),
 	 ('dinheiro',6.38,'2022-12-12 12:16:27',79,792.75,3,'produto','47913471837'),
 	 ('ted',31.29,'2022-12-13 11:56:58',80,967.54,9,'produto','49185410172');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('dinheiro',39.97,'2022-12-20 01:54:58',81,975.70,9,'produto','85052766280'),
 	 ('ted',22.81,'2022-12-11 18:14:48',82,254.49,5,'produto','70101665818'),
 	 ('pix',16.60,'2022-12-05 21:53:21',83,234.20,3,'produto','64746147704'),
@@ -1173,7 +1158,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('cartão',17.25,'2022-12-17 04:20:17',88,149.95,1,'produto','70101665818'),
 	 ('dinheiro',9.22,'2022-12-07 12:13:49',89,268.16,3,'produto','84899323025'),
 	 ('cartão',29.50,'2022-12-18 02:01:32',90,355.87,10,'produto','85052766280');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('dinheiro',31.64,'2022-12-09 20:53:19',91,982.70,6,'produto','65801393729'),
 	 ('pix',15.15,'2022-12-05 06:02:12',92,183.84,2,'produto','65712806293'),
 	 ('dinheiro',35.40,'2022-12-05 17:50:15',93,603.66,3,'produto','23021042410'),
@@ -1184,7 +1169,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('cartão',18.87,'2022-12-07 05:09:38',98,380.45,9,'produto','64746147704'),
 	 ('cartão',12.99,'2022-12-04 00:43:10',99,999.81,6,'produto','29415257674'),
 	 ('ted',28.42,'2022-12-10 10:02:52',103,424.84,6,'produto','80599821912');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',17.88,'2022-12-15 23:27:51',104,749.18,5,'produto','56504358591'),
 	 ('pix',30.59,'2022-12-03 07:13:32',105,15.00,4,'produto','80599821912'),
 	 ('ted',20.06,'2022-12-06 04:40:30',106,20.00,10,'produto','76118861344'),
@@ -1195,7 +1180,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('pix',23.99,'2022-12-05 12:43:58',111,80.00,5,'produto','23964344089'),
 	 ('dinheiro',8.29,'2022-12-19 12:55:51',112,60.00,5,'produto','18217498915'),
 	 ('pix',23.13,'2022-12-06 06:11:56',113,20.00,8,'produto','56504358591');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('dinheiro',36.19,'2022-12-02 05:26:32',114,27.00,6,'produto','29415257674'),
 	 ('dinheiro',33.27,'2022-12-08 23:42:15',115,45.00,7,'produto','50815306335'),
 	 ('cartão',26.38,'2022-12-06 21:36:37',116,40.00,7,'produto','50815306335'),
@@ -1206,7 +1191,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('dinheiro',26.87,'2022-12-08 17:42:50',121,30.00,2,'produto','50815306335'),
 	 ('pix',36.80,'2022-12-06 01:29:18',122,3.00,6,'produto','29415257674'),
 	 ('dinheiro',32.10,'2022-12-19 16:42:51',123,40.00,6,'produto','84899323025');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('pix',17.23,'2022-12-13 00:17:50',124,6.00,1,'produto','14818681805'),
 	 ('cartão',39.63,'2022-12-02 03:24:23',125,40.00,4,'produto','29415257674'),
 	 ('pix',15.36,'2022-12-05 01:49:21',126,80.00,2,'produto','79739723559'),
@@ -1217,7 +1202,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('cartão',33.40,'2022-12-07 19:03:25',131,10.00,4,'produto','29458660053'),
 	 ('pix',32.05,'2022-12-13 06:38:30',132,20.00,9,'produto','79739723559'),
 	 ('cartão',32.85,'2022-12-05 13:33:23',133,6.00,8,'produto','76118861344');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',21.54,'2022-12-09 08:32:47',134,6.00,7,'produto','29415257674'),
 	 ('ted',33.79,'2022-12-02 22:46:25',135,70.00,10,'produto','84899323025'),
 	 ('cartão',35.78,'2022-12-06 20:52:10',136,50.00,9,'produto','64746147704'),
@@ -1228,7 +1213,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2022-05-27 08:48:15',141,6750.00,1,'salário','34190494541'),
 	 ('ted',30.00,'2022-03-09 13:02:32',142,21959.00,1,'salário','76694796302'),
 	 ('ted',30.00,'2022-11-28 15:04:03',143,23591.00,1,'salário','57223779143');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2022-03-19 15:21:05',144,3352.00,1,'salário','34190494541'),
 	 ('ted',30.00,'2021-03-15 02:13:56',145,22493.00,1,'salário','18924239353'),
 	 ('ted',30.00,'2022-09-15 07:47:33',146,8079.00,1,'salário','63359208302'),
@@ -1239,7 +1224,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2021-04-20 09:27:12',151,5567.00,1,'salário','60681591658'),
 	 ('ted',30.00,'2021-07-01 07:05:23',152,7822.00,1,'salário','76694796302'),
 	 ('ted',30.00,'2022-12-14 23:25:28',153,15899.00,1,'salário','66204786879');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2022-05-27 09:25:00',154,19311.00,1,'salário','66204786879'),
 	 ('ted',30.00,'2022-04-02 02:49:25',155,6581.00,1,'salário','78201468182'),
 	 ('ted',30.00,'2022-03-08 00:24:23',156,18127.00,1,'salário','46848979044'),
@@ -1250,7 +1235,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2022-01-30 18:31:26',161,13217.00,1,'salário','63359208302'),
 	 ('ted',30.00,'2022-04-07 09:53:28',162,21557.00,1,'salário','63359208302'),
 	 ('ted',30.00,'2021-07-28 00:29:09',163,15271.00,1,'salário','78201468182');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2021-07-15 15:42:44',164,21063.00,1,'salário','35002823119'),
 	 ('ted',30.00,'2021-09-13 13:26:58',165,11532.00,1,'salário','71904029634'),
 	 ('ted',30.00,'2022-12-05 17:50:18',166,4073.00,1,'salário','61995548699'),
@@ -1261,7 +1246,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2021-12-10 09:13:53',171,28291.00,1,'salário','75236842275'),
 	 ('ted',30.00,'2022-10-19 05:00:44',172,1880.00,1,'salário','18924239353'),
 	 ('ted',30.00,'2021-11-01 03:18:13',173,21779.00,1,'salário','73989376227');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2022-04-15 05:18:03',174,20343.00,1,'salário','59085976081'),
 	 ('ted',30.00,'2022-05-11 03:30:40',175,23477.00,1,'salário','75236842275'),
 	 ('ted',30.00,'2022-03-28 23:04:05',176,28249.00,1,'salário','46848979044'),
@@ -1272,7 +1257,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2022-01-15 04:39:51',181,27118.00,1,'salário','64950318323'),
 	 ('ted',30.00,'2022-07-02 02:24:02',182,21802.00,1,'salário','57223779143'),
 	 ('ted',30.00,'2021-06-27 14:10:39',183,7986.00,1,'salário','65852677241');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2022-02-20 15:59:35',184,1078.00,1,'salário','73989376227'),
 	 ('ted',30.00,'2021-10-22 15:34:32',185,21171.00,1,'salário','78201468182'),
 	 ('ted',30.00,'2021-11-19 06:35:00',186,16476.00,1,'salário','60681591658'),
@@ -1283,7 +1268,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2022-01-28 08:32:20',191,17026.00,1,'salário','13144156188'),
 	 ('ted',30.00,'2022-04-13 00:16:45',192,26015.00,1,'salário','75236842275'),
 	 ('ted',30.00,'2021-02-08 14:57:53',193,23629.00,1,'salário','89255200945');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2021-08-07 01:55:29',194,18775.00,1,'salário','13144156188'),
 	 ('ted',30.00,'2022-04-02 07:29:40',195,7457.00,1,'salário','13144156188'),
 	 ('ted',30.00,'2022-08-09 07:00:33',196,5552.00,1,'salário','89255200945'),
@@ -1294,7 +1279,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2022-08-22 06:27:32',201,17593.00,1,'salário','59085976081'),
 	 ('ted',30.00,'2022-04-13 12:11:45',202,3503.00,1,'salário','57950105512'),
 	 ('ted',30.00,'2021-03-03 00:48:10',203,1463.00,1,'salário','78201468182');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2021-01-01 22:59:35',204,15162.00,1,'salário','89255200945'),
 	 ('ted',30.00,'2022-08-10 23:07:28',205,8250.00,1,'salário','60681591658'),
 	 ('ted',30.00,'2022-06-04 01:35:26',206,21107.00,1,'salário','18924239353'),
@@ -1305,7 +1290,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2022-02-27 02:25:03',211,9956.00,1,'salário','59085976081'),
 	 ('ted',30.00,'2022-02-11 13:03:11',212,13173.00,1,'salário','13144156188'),
 	 ('ted',30.00,'2022-09-13 17:51:32',213,16683.00,1,'salário','34190494541');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2020-12-30 05:40:12',214,22656.00,1,'salário','63359208302'),
 	 ('ted',30.00,'2022-11-29 07:41:49',215,1465.00,1,'salário','78201468182'),
 	 ('ted',30.00,'2021-04-01 09:35:44',216,17869.00,1,'salário','86687483426'),
@@ -1316,7 +1301,7 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2021-06-19 16:07:49',221,24733.00,1,'salário','73989376227'),
 	 ('ted',30.00,'2022-11-12 06:51:26',222,26450.00,1,'salário','13144156188'),
 	 ('ted',30.00,'2022-07-08 06:51:41',223,9570.00,1,'salário','13144156188');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2021-11-04 21:48:49',224,4495.00,1,'salário','86687483426'),
 	 ('ted',30.00,'2022-02-20 07:31:48',225,15595.00,1,'salário','76694796302'),
 	 ('ted',30.00,'2022-08-19 13:52:06',226,28850.00,1,'salário','13144156188'),
@@ -1327,12 +1312,11 @@ INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quanti
 	 ('ted',30.00,'2021-12-10 01:05:41',231,26596.00,1,'salário','64950318323'),
 	 ('ted',30.00,'2021-06-06 10:23:52',232,21497.00,1,'salário','75236842275'),
 	 ('ted',30.00,'2021-03-16 01:38:06',233,27838.00,1,'salário','61995548699');
-INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantitity,cash_outflow_TYPE,responsible_cpf) VALUES
+INSERT INTO cash_outflow (payment_form,tax,emission_date,payment_id,value,quantity,cash_outflow_TYPE,responsible_cpf) VALUES
 	 ('ted',30.00,'2022-07-21 22:18:41',234,29255.00,1,'salário','66204786879'),
 	 ('ted',30.00,'2021-08-29 07:21:16',235,2766.00,1,'salário','76694796302'),
 	 ('ted',30.00,'2022-07-10 02:13:24',236,2657.00,1,'salário','78201468182'),
 	 ('ted',30.00,'2022-04-06 02:24:10',237,23460.00,1,'salário','57950105512');
-
 INSERT INTO cash_outflow_product (product_id,payment_id) VALUES
 	 (5,106),
 	 (3,107),
@@ -1369,7 +1353,6 @@ INSERT INTO cash_outflow_product (product_id,payment_id) VALUES
 INSERT INTO cash_outflow_product (product_id,payment_id) VALUES
 	 (5,136),
 	 (1,137);
-
 INSERT INTO employee_room (room_id,employee_cpf) VALUES
 	 (1,'13616560396'),
 	 (2,'65060258468'),
@@ -1400,8 +1383,7 @@ INSERT INTO saloon (capacity,name,covered_area,location,saloon_id,external_area,
 	 (30,'Salão 3',80.00,'2 andar',3,0.00,'normal',3),
 	 (150,'Salão 4',200.00,'térreo',4,50.00,'com área externa',4),
 	 (200,'Salão 5',300.00,'térreo',5,100.00,'com área externa',5);
-	
-	INSERT INTO employee_saloon (saloon_id,employee_cpf) VALUES
+INSERT INTO employee_saloon (saloon_id,employee_cpf) VALUES
 	 (1,'22389034833'),
 	 (1,'51677792273'),
 	 (2,'65060258468'),
@@ -1414,8 +1396,7 @@ INSERT INTO saloon (capacity,name,covered_area,location,saloon_id,external_area,
 	 (5,'49191327254');
 INSERT INTO employee_saloon (saloon_id,employee_cpf) VALUES
 	 (5,'66683140110');
-
-	INSERT INTO event_saloon (saloon_id,event_id) VALUES
+INSERT INTO event_saloon (saloon_id,event_id) VALUES
 	 (1,1),
 	 (2,2),
 	 (3,3),
@@ -1426,8 +1407,7 @@ INSERT INTO employee_saloon (saloon_id,employee_cpf) VALUES
 	 (3,8),
 	 (4,9),
 	 (5,10);
-
-	INSERT INTO hotel_product (stock,min_stock,hotel_id,product_id) VALUES
+INSERT INTO hotel_product (stock,min_stock,hotel_id,product_id) VALUES
 	 (103,50,1,1),
 	 (143,100,1,2),
 	 (201,50,1,3),
@@ -1455,8 +1435,7 @@ INSERT INTO hotel_product (stock,min_stock,hotel_id,product_id) VALUES
 	 (323,100,5,3),
 	 (642,200,5,4),
 	 (545,200,5,5);
-
-	INSERT INTO kitchen (n_fridges,n_oven,n_frezeers,n_stoves,stove_hood,size_m2,kitchen_id,room_id) VALUES
+INSERT INTO kitchen (n_fridges,n_oven,n_frezeers,n_stoves,stove_hood,size_m2,kitchen_id,room_id) VALUES
 	 (5,5,4,1,0,44.00,1,1),
 	 (5,1,2,4,0,76.00,2,1),
 	 (3,2,4,4,0,28.00,3,1),
@@ -1489,37 +1468,35 @@ INSERT INTO kitchen (n_fridges,n_oven,n_frezeers,n_stoves,stove_hood,size_m2,kit
 	 (2,5,4,2,1,54.00,28,1),
 	 (2,3,4,4,1,83.00,29,1),
 	 (2,5,4,3,1,33.00,30,1);
-
-	INSERT INTO parking_space (location,daily_rate,preferential,parking_id,width,`length`,parking_space_TYPE,hotel_id) VALUES
-	 ('A1',20.00,1,1,2.40,5.40,'Interna',1),
-	 ('B1',20.00,0,2,2.40,5.40,'Externa',1),
-	 ('A2',20.00,0,3,2.40,5.40,'Interna',1),
-	 ('B2',20.00,1,4,2.40,5.40,'Externa',1),
-	 ('A3',20.00,0,5,2.40,5.40,'Interna',1),
-	 ('A1',20.00,1,6,2.40,5.40,'Interna',2),
-	 ('B1',20.00,0,7,2.40,5.40,'Externa',2),
-	 ('A2',20.00,0,8,2.40,5.40,'Interna',2),
-	 ('B2',20.00,1,9,2.40,5.40,'Externa',2),
-	 ('A3',20.00,0,10,2.40,5.40,'Interna',2);
-INSERT INTO parking_space (location,daily_rate,preferential,parking_id,width,`length`,parking_space_TYPE,hotel_id) VALUES
-	 ('A1',20.00,1,11,2.40,5.40,'Interna',3),
-	 ('B1',20.00,0,12,2.40,5.40,'Externa',3),
-	 ('A2',20.00,0,13,2.40,5.40,'Interna',3),
-	 ('B2',20.00,1,14,2.40,5.40,'Externa',3),
-	 ('A3',20.00,0,15,2.40,5.40,'Interna',3),
-	 ('A1',20.00,1,16,2.40,5.40,'Interna',4),
-	 ('B1',20.00,0,17,2.40,5.40,'Externa',4),
-	 ('A2',20.00,0,18,2.40,5.40,'Interna',4),
-	 ('B2',20.00,1,19,2.40,5.40,'Externa',4),
-	 ('A3',20.00,0,20,2.40,5.40,'Interna',4);
-INSERT INTO parking_space (location,daily_rate,preferential,parking_id,width,`length`,parking_space_TYPE,hotel_id) VALUES
-	 ('A1',20.00,1,21,2.40,5.40,'Interna',5),
-	 ('B1',20.00,0,22,2.40,5.40,'Externa',5),
-	 ('A2',20.00,0,23,2.40,5.40,'Interna',5),
-	 ('B2',20.00,1,24,2.40,5.40,'Externa',5),
-	 ('A3',20.00,0,25,2.40,5.40,'Interna',5);
-
-	INSERT INTO received_payment (payment_id,employee_cpf) VALUES
+INSERT INTO parking_space (location,daily_rate,preferential,parking_id,width,`length`,parking_space_TYPE,hotel_id,covered) VALUES
+	 ('A1',20.00,1,1,2.40,5.40,'Interna',1,1),
+	 ('B1',20.00,0,2,2.40,5.40,'Externa',1,0),
+	 ('A2',20.00,0,3,2.40,5.40,'Interna',1,1),
+	 ('B2',20.00,1,4,2.40,5.40,'Externa',1,0),
+	 ('A3',20.00,0,5,2.40,5.40,'Interna',1,1),
+	 ('A1',20.00,1,6,2.40,5.40,'Interna',2,1),
+	 ('B1',20.00,0,7,2.40,5.40,'Externa',2,0),
+	 ('A2',20.00,0,8,2.40,5.40,'Interna',2,1),
+	 ('B2',20.00,1,9,2.40,5.40,'Externa',2,0),
+	 ('A3',20.00,0,10,2.40,5.40,'Interna',2,1);
+INSERT INTO parking_space (location,daily_rate,preferential,parking_id,width,`length`,parking_space_TYPE,hotel_id,covered) VALUES
+	 ('A1',20.00,1,11,2.40,5.40,'Interna',3,1),
+	 ('B1',20.00,0,12,2.40,5.40,'Externa',3,0),
+	 ('A2',20.00,0,13,2.40,5.40,'Interna',3,1),
+	 ('B2',20.00,1,14,2.40,5.40,'Externa',3,0),
+	 ('A3',20.00,0,15,2.40,5.40,'Interna',3,1),
+	 ('A1',20.00,1,16,2.40,5.40,'Interna',4,1),
+	 ('B1',20.00,0,17,2.40,5.40,'Externa',4,0),
+	 ('A2',20.00,0,18,2.40,5.40,'Interna',4,1),
+	 ('B2',20.00,1,19,2.40,5.40,'Externa',4,0),
+	 ('A3',20.00,0,20,2.40,5.40,'Interna',4,1);
+INSERT INTO parking_space (location,daily_rate,preferential,parking_id,width,`length`,parking_space_TYPE,hotel_id,covered) VALUES
+	 ('A1',20.00,1,21,2.40,5.40,'Interna',5,1),
+	 ('B1',20.00,0,22,2.40,5.40,'Externa',5,0),
+	 ('A2',20.00,0,23,2.40,5.40,'Interna',5,1),
+	 ('B2',20.00,1,24,2.40,5.40,'Externa',5,0),
+	 ('A3',20.00,0,25,2.40,5.40,'Interna',5,1);
+INSERT INTO received_payment (payment_id,employee_cpf) VALUES
 	 (138,'12673786081'),
 	 (139,'13144156188'),
 	 (140,'13616560396'),
@@ -1629,8 +1606,7 @@ INSERT INTO received_payment (payment_id,employee_cpf) VALUES
 	 (235,'97465530561'),
 	 (236,'97810080291'),
 	 (237,'99518031149');
-
-	INSERT INTO reservation_parking_space (initial_date,total_days,reservation_id,parking_id) VALUES
+INSERT INTO reservation_parking_space (initial_date,total_days,reservation_id,parking_id) VALUES
 	 ('2021-12-02 04:44:39',6,1,1),
 	 ('2021-12-03 21:02:05',3,2,2),
 	 ('2021-12-03 06:54:25',5,3,3),
@@ -1652,7 +1628,6 @@ INSERT INTO reservation_parking_space (initial_date,total_days,reservation_id,pa
 	 ('2021-12-03 16:00:23',4,18,18),
 	 ('2021-12-03 04:54:20',5,19,19),
 	 ('2021-12-04 14:37:41',5,20,20);
-
 INSERT INTO reservation_period_bedroom (days,initial_date,bedroom_id,reservation_id) VALUES
 	 (5,'2021-12-04 14:37:41',16,20),
 	 (5,'2021-12-03 04:54:20',17,19),
@@ -1675,15 +1650,13 @@ INSERT INTO reservation_period_bedroom (days,initial_date,bedroom_id,reservation
 	 (5,'2021-12-03 06:54:25',3,3),
 	 (3,'2021-12-03 21:02:05',4,2),
 	 (6,'2021-12-02 04:44:39',5,1);
-	
-	INSERT INTO reservation_product (quantity,reservation_id,product_id) VALUES
+INSERT INTO reservation_product (quantity,reservation_id,product_id) VALUES
 	 (2,1,1),
 	 (3,2,2),
 	 (1,3,3),
 	 (2,4,4),
 	 (1,5,5);
-
-	INSERT INTO restaurant_product (stock,min_stock,restaurant_id,product_id) VALUES
+INSERT INTO restaurant_product (stock,min_stock,restaurant_id,product_id) VALUES
 	 (16,10,1,1),
 	 (19,10,2,2),
 	 (31,20,3,3),
@@ -1691,15 +1664,76 @@ INSERT INTO reservation_period_bedroom (days,initial_date,bedroom_id,reservation
 	 (15,10,5,2),
 	 (25,20,6,3),
 	 (16,10,7,1);
-
-	INSERT INTO saloon_kitchen (kitchen_id,saloon_id) VALUES
+INSERT INTO saloon_kitchen (kitchen_id,saloon_id) VALUES
 	 (1,1),
 	 (2,2),
 	 (3,3),
 	 (4,4),
 	 (5,5);
-
-	
-	
-	
-	
+INSERT INTO campaigns (campaign_name,initial_date,final_date,main_target,dept_id,campaign_id) VALUES
+	 ('Promoção de verão','2022-10-15 21:39:56','2022-01-15 21:39:56','Jovens',3,1),
+	 ('Promoção de verão','2022-10-15 21:39:56','2022-01-15 21:39:56','Jovens',7,2),
+	 ('Promoção de verão','2022-10-15 21:39:56','2022-01-15 21:39:56','Jovens',11,3),
+	 ('Promoção de verão','2022-10-15 21:39:56','2022-01-15 21:39:56','Jovens',15,4),
+	 ('Promoção de verão','2022-10-15 21:39:56','2022-01-15 21:39:56','Jovens',19,5),
+	 ('Promoção de dia das crianças','2022-10-01 21:39:56','2022-10-30 21:39:56','Pais',19,6),
+	 ('Promoção de dia das crianças','2022-10-01 21:39:56','2022-10-30 21:39:56','Pais',15,7);
+INSERT INTO cash_entry_room (missing_value,payment_id,room_id) VALUES
+	 (2654.57,210,1),
+	 (1012.28,211,1),
+	 (0.00,212,1),
+	 (1862.35,213,2),
+	 (0.00,214,2);
+INSERT INTO dish (name,description,value,dish_id,restaurant_id) VALUES
+	 ('Feijoada','Acompanhado com arroz.',50.00,1,1),
+	 ('Feijoada','Acompanhado com arroz.',45.00,2,2),
+	 ('Feijoada','Acompanhado com arroz.',60.00,3,3),
+	 ('Feijoada','Acompanhado com arroz.',45.00,4,4),
+	 ('Feijoada','Acompanhado com arroz.',55.00,5,5),
+	 ('Beirute aladim','Presunto, mussarela, orégano, cebola e tomate',70.00,6,7),
+	 ('Esfiha filé mignom','Esfiha de filé mignom',20.00,7,7),
+	 ('Temaki de salmão','Temaki de salmão',20.00,8,6);
+INSERT INTO cupom (active,description,valid_reservation,cupom_id,code,value_percentage,value,cupom_TYPE,campaign_id) VALUES
+	 (1,'Cupom de verão',1,1,'AAAAA',NULL,50.00,'Em dinheiro',1),
+	 (1,'Cupom de verão',1,2,'BBBBB',0.15,NULL,'Em porcentagem',5),
+	 (1,'Cupom de verão',1,3,'CCCCC',0.15,NULL,'Em porcentagem',4),
+	 (0,'Cupom de verão',1,4,'DDDDD',NULL,50.00,'Em dinheiro',6),
+	 (1,'Cupom de verão',0,5,'EEEEE',0.30,NULL,'Em porcentagem',3);
+INSERT INTO fidelity_program (cpf,points,expire_at) VALUES
+	 ('11653758376',125,'2023-12-15 22:28:27'),
+	 ('14684895849',10,'2023-12-15 22:28:27'),
+	 ('14863617125',352,'2023-12-15 22:28:27'),
+	 ('15026003393',5,'2023-12-15 22:28:27'),
+	 ('17829659659',25,'2023-12-15 22:28:27'),
+	 ('25313666769',320,'2023-12-15 22:28:27'),
+	 ('25675754362',541,'2023-12-15 22:28:27'),
+	 ('26980211027',3,'2023-12-15 22:28:27'),
+	 ('27779345994',21,'2023-12-15 22:28:27'),
+	 ('30208062926',121,'2023-12-15 22:28:27');
+INSERT INTO petshop (petshop_id,name,location,open_period,hotel_id,dept_id) VALUES
+	 (1,'Recanto dos Pets','Térreo','08:00-17:00',1,4),
+	 (2,'Amicão','Térreo','07:00-22:00',2,8),
+	 (3,'Pet Spa','Primeiro Andar','07:00-22:00',3,12),
+	 (4,'SOS Pet','Primeiro Andar','07:00-22:00',4,16),
+	 (5,'Mundo Pet','Térreo','00:00-23:59',5,20);
+INSERT INTO petshop_client_payment (pet_name,pet_type,service_type,value,petshop_id,cpf,payment_id) VALUES
+	 ('Rex','Cachorro','Médico',400.00,1,'11653758376',35),
+	 ('Thor','Cachorro','Lavagem',300.00,2,'14684895849',36),
+	 ('Ariel','Gato','Lavagem',100.00,3,'14863617125',37),
+	 ('Pingo','Cachorro','Médico',550.00,4,'23295361354',38),
+	 ('Max','Cachorro','Médico',1400.00,5,'15026003393',39),
+	 ('Scooby','Cachorro','Lavagem',300.00,1,'14863617125',40),
+	 ('Zeus','Gato','Lavagem',200.00,2,'25675754362',41),
+	 ('Amarelinho','Gato','Lavagem',250.00,3,'30173079528',42),
+	 ('Branquinho','Gato','Médico',600.00,4,'30710264073',43);
+INSERT INTO petshop_product (min_stock,stock,petshop_id,product_id) VALUES
+	 (4,5,1,6),
+	 (4,6,2,6),
+	 (4,7,3,6),
+	 (3,8,4,6),
+	 (4,9,5,6),
+	 (10,14,1,6),
+	 (10,13,2,7),
+	 (15,20,3,7),
+	 (15,21,4,7),
+	 (20,36,5,7);

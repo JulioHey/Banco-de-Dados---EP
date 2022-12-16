@@ -1,4 +1,4 @@
-INSERT INTO restaurant (name,restaurant_id,`type`,room_service,location,fk_hotel_hotel_id,fk_department_department_id) VALUES
+INSERT INTO restaurant (name,restaurant_id,`type`,room_service,location,fk_hotel_hotel_id,department_id) VALUES
 	 ('Belo Sabor',1,'Brasileira',1,'Térreo',1,4),
 	 ('Bem Servido',2,'Brasileira',1,'Térreo',2,8),
 	 ('Bom Apetite',3,'Brasileira',1,'Térreo',3,12),
