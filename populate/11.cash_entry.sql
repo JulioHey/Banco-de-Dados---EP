@@ -218,3 +218,19 @@ INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value,cupom_id
 	 ('dinheiro',23.00,'2021-05-19 02:04:05',198,688.56,NULL),
 	 ('dinheiro',25.00,'2022-05-22 01:01:43',199,520.00,NULL),
 	 ('dinheiro',1.25,'2023-01-08 16:58:25',200,434.31,NULL);
+INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value,cupom_id) VALUES
+	 ('ted',5.00,'2022-03-22 04:06:08',201,511.57,NULL),
+	 ('ted',9.75,'2022-06-14 17:53:45',202,4618.00,NULL),
+	 ('cartão',9.00,'2021-11-01 13:42:41',203,2708.05,NULL),
+	 ('cartão',9.00,'2021-12-01 13:42:41',204,2708.05,NULL),
+	 ('dinheiro',1.25,'2023-01-08 16:58:25',205,42.00,1),
+	 ('ted',5.00,'2022-03-22 04:06:08',206,126.85,2),
+	 ('ted',9.75,'2022-06-14 17:53:45',207,50.00,NULL),
+	 ('cartão',9.00,'2021-11-01 13:42:41',208,82.00,NULL),
+	 ('cartão',9.00,'2021-12-01 13:42:41',209,57.00,NULL),
+	 ('ted',9.00,'2021-11-01 13:42:41',210,1642.29,NULL);
+INSERT INTO cash_entry (payment_form,tax,emission_date,payment_id,value,cupom_id) VALUES
+	 ('ted',9.00,'2021-12-01 13:42:41',211,1642.29,NULL),
+	 ('ted',9.00,'2022-01-01 13:42:41',212,1012.28,NULL),
+	 ('ted',9.00,'2021-11-01 13:42:41',213,1862.36,NULL),
+	 ('ted',9.00,'2021-12-01 13:42:41',214,1862.35,NULL);

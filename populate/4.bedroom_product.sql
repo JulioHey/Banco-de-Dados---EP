@@ -25,11 +25,4 @@ INSERT INTO bedroom_product (min_stock,stock,bedroom_id,product_id) VALUES
 	 (10,27,22,2),
 	 (10,11,23,3),
 	 (30,67,24,4),
-	 (30,46,25,5),
-	 (20,20,1,1),
-	 (10,25,2,2),
-	 (10,20,3,3),
-	 (30,36,4,4),
-	 (30,43,5,5);
-INSERT INTO bedroom_product (min_stock,stock,bedroom_id,product_id) VALUES
-	 (20,35,6,1);
+	 (30,46,25,5);
