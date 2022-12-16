@@ -1,4 +1,4 @@
-INSERT INTO cash_entry_restaurant (restaurant_id,payment_id) VALUES
+INSERT INTO cash_entry_restaurant (restaurant_id,payment_id, client_cpf) VALUES
 	 (1,1,"23295361354"),
 	 (2,2,"24738320396"),
 	 (3,3,"25313666769"),

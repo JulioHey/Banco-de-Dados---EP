@@ -715,17 +715,17 @@ INSERT INTO restaurant (name,restaurant_id,`type`,room_service,location,fk_hotel
 	 ('Casa da Sogra',5,'Brasileira',0,'Térreo',5,20),
 	 ('Origami',6,'Japonesa',0,'Térreo',5,20),
 	 ('Aladin',7,'Árabe',1,'Térreo',4,16);
-INSERT INTO cash_entry_restaurant (restaurant_id,payment_id) VALUES
-	 (1,1),
-	 (2,2),
-	 (3,3),
-	 (4,4),
-	 (5,5),
-	 (6,6),
-	 (7,7),
-	 (1,8),
-	 (2,9),
-	 (3,10);
+INSERT INTO cash_entry_restaurant (restaurant_id,payment_id, client_cpf) VALUES
+	 (1,1,"23295361354"),
+	 (2,2,"24738320396"),
+	 (3,3,"25313666769"),
+	 (4,4,"25675754362"),
+	 (5,5,"26980211027"),
+	 (6,6,"27347950998"),
+	 (7,7,"27779345994"),
+	 (1,8,"29392753217"),
+	 (2,9,"30173079528"),
+	 (3,10,"30208062926");
 INSERT INTO room (final_date,initial_date,size_m2,location,mensal_rent,weekly_rent,room_id,deposit_area,room_TYPE,hotel_id,company_cnpj) VALUES
 	 ('2022-02-07 03:17:06','2021-11-23 05:58:53',88.00,'2',1916.00,547.43,1,54.00,'interna',3,'17302434705304'),
 	 ('2021-12-30 10:46:25','2021-11-23 18:57:44',60.00,'2',2897.00,827.71,2,51.00,'interna',2,'18940924979145'),
@@ -1730,3 +1730,4 @@ INSERT INTO petshop_product (min_stock,stock,petshop_id,product_id) VALUES
 	 (15,20,3,7),
 	 (15,21,4,7),
 	 (20,36,5,7);
+	 
